@@ -2,6 +2,8 @@
  * Create a list that holds all of your cards
  */
 
+let cardList = [];
+let openCards = [];
 
 /*
  * Display the cards on the page
@@ -22,9 +24,8 @@ function shuffle(array) {
         array[randomIndex] = temporaryValue;
     }
 
-    return array;
+    return array ;
 }
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -36,3 +37,40 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+function startGame () {
+  let cards = document.querySelectorAll('.deck .card');
+  console.log `cards: ${cards}`;
+  for (let card of cards) {
+    card.addEventListener('click', function (event) {
+      showCard(event.target);
+    })
+  }
+}
+
+function showCard (card) {
+  openCard(card);
+  addToOpenCards(card);
+  if (openCards.length === 2) {
+    // Check if cards match
+    // Change class from "show" to "match"
+  }
+}
+
+function openCard (card) {
+  card.classList.add('show', 'open')
+}
+
+function closeCard (card) {
+  card.classList.remove('show', 'open')
+}
+
+function addToOpenCards (card) {
+  // add card to list of open cards
+}
+
+function clearOpenCards () {
+  openCards.length = 0;
+}
+
+startGame();
