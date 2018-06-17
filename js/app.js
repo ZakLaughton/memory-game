@@ -54,8 +54,7 @@ function showCard (card) {
   openCard(card);
   addToOpenCards(card);
   if (openCards.length === 2) {
-    // Check if cards match
-    // Change class from "show" to "match"
+    isMatch();
   }
 }
 
@@ -68,11 +67,23 @@ function closeCard (card) {
 }
 
 function addToOpenCards (card) {
-  openCards += card;
+  openCards.push(card);
 }
 
 function clearOpenCards () {
   openCards.length = 0;
+}
+
+function isMatch () {
+  card1 = openCards[0].children[0].classList.value
+  card2 = openCards[1].children[0].classList.value
+  if (card1 === card2) {
+    console.log('match!');
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 
 startGame();
