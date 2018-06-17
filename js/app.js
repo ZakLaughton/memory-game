@@ -4,6 +4,7 @@
 
 let cardList = [];
 let openCards = [];
+let matchedCards = [];
 
 /*
  * Display the cards on the page
@@ -39,9 +40,10 @@ function shuffle(array) {
  */
 
 function startGame () {
+  // set board
   let cards = document.querySelectorAll('.deck .card');
-  console.log `cards: ${cards}`;
   for (let card of cards) {
+    card.classList = 'card'
     card.addEventListener('click', function (event) {
       showCard(event.target);
     })
@@ -66,7 +68,7 @@ function closeCard (card) {
 }
 
 function addToOpenCards (card) {
-  // add card to list of open cards
+  openCards += card;
 }
 
 function clearOpenCards () {
@@ -74,3 +76,5 @@ function clearOpenCards () {
 }
 
 startGame();
+const restartButton = document.querySelector('.restart')
+restartButton.addEventListener('click', startGame)
