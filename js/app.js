@@ -62,13 +62,21 @@ function shuffle(array) {
 
 function startGame () {
   // set board
-  openCards.clear()
+  openCards.clear();
   let cards = document.querySelectorAll('.deck .card');
   for (let card of cards) {
-    card.classList = 'card'
+    card.classList = 'card';
     card.addEventListener('click', function (event) {
       showCard(event.target);
     })
+  }
+}
+
+function restartGame () {
+  openCards.clear();
+  let cards = document.querySelectorAll('.deck .card');
+  for (let card of cards) {
+    card.classList = 'card';
   }
 }
 
@@ -80,14 +88,11 @@ function showCard (card) {
       setMatchedCards();
       openCards.clear();
     } else {
-      console.log('aboud to run closeCards')
       setTimeout(function () {
-        console.log('done with the timeout')
         openCards.closeAll();
         openCards.clear();
       }, 1000)
     }
-
   }
 }
 
@@ -105,4 +110,4 @@ function setMatchedCards () {
 
 startGame();
 const restartButton = document.querySelector('.restart')
-restartButton.addEventListener('click', startGame)
+restartButton.addEventListener('click', restartGame)
