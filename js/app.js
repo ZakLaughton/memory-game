@@ -52,6 +52,18 @@ function shuffle(array) {
     return array;
 }
 
+function shuffleCards() {
+  let cards = document.querySelectorAll('ul.deck li.card');
+  let cardsArray = Array.from(cards);
+
+  cardsArray = shuffle(cardsArray);
+  newBoard = ""
+  for (card of cardsArray) {
+    newBoard += card.outerHTML
+  }
+  document.querySelector('.deck').innerHTML = newBoard
+}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -66,6 +78,9 @@ function shuffle(array) {
 function startGame () {
   // set board
   openCards.clear();
+  document.getElementsByClassName('moves')[0].innerHTML = 0;
+  matchedCards.length = 0
+  shuffleCards();
   let cards = document.querySelectorAll('.deck .card');
   for (let card of cards) {
     card.classList = 'card';
@@ -74,16 +89,6 @@ function startGame () {
         showCard(event.target);
       }
     })
-  }
-}
-
-function restartGame () {
-  openCards.clear();
-  document.getElementsByClassName('moves')[0].innerHTML = 0;
-  matchedCards.length = 0
-  let cards = document.querySelectorAll('.deck .card');
-  for (let card of cards) {
-    card.classList = 'card';
   }
 }
 
@@ -130,4 +135,4 @@ function setMatchedCards () {
 
 startGame();
 const restartButton = document.querySelector('.restart')
-restartButton.addEventListener('click', restartGame)
+restartButton.addEventListener('click', startGame)
