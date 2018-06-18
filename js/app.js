@@ -79,6 +79,8 @@ function startGame () {
 
 function restartGame () {
   openCards.clear();
+  document.getElementsByClassName('moves')[0].innerHTML = 0;
+  matchedCards.length = 0
   let cards = document.querySelectorAll('.deck .card');
   for (let card of cards) {
     card.classList = 'card';
