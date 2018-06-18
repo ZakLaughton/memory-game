@@ -2,8 +2,29 @@
  * Create a list that holds all of your cards
  */
 
-let cardList = [];
-let openCards = [];
+let openCards = {
+  cards: [],
+
+  clear: function () {
+    this.cards.length = 0;
+  },
+  closeAll: function () {
+    for (let card of this.cards) {
+      card.classList.remove('show', 'open')
+    }
+  },
+  isMatch: function () {
+    card1 = this.cards[0].children[0].classList.value
+    card2 = this.cards[1].children[0].classList.value
+    if (card1 === card2) {
+      console.log('match!');
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+}
 let matchedCards = [];
 
 /*
@@ -41,6 +62,7 @@ function shuffle(array) {
 
 function startGame () {
   // set board
+  openCards.clear()
   let cards = document.querySelectorAll('.deck .card');
   for (let card of cards) {
     card.classList = 'card'
@@ -51,39 +73,42 @@ function startGame () {
 }
 
 function showCard (card) {
-  openCard(card);
+  card.classList.add('show', 'open');
   addToOpenCards(card);
-  if (openCards.length === 2) {
-    isMatch();
+  if (openCards.cards.length === 2) {
+    if (openCards.isMatch()) {
+      setMatchedCards();
+      openCards.clear();
+    } else {
+      console.log('aboud to run closeCards')
+      setTimeout(function () {
+        console.log('done with the timeout')
+        openCards.closeAll();
+        openCards.clear();
+      }, 1000)
+    }
+
   }
 }
 
-function openCard (card) {
-  card.classList.add('show', 'open')
-}
+function closeCards () {
 
-function closeCard (card) {
-  card.classList.remove('show', 'open')
 }
 
 function addToOpenCards (card) {
-  openCards.push(card);
+  openCards.cards.push(card);
 }
 
-function clearOpenCards () {
-  openCards.length = 0;
+function setMatchedCards () {
+  for (let card of openCards.cards) {
+    card.classList.remove('show', 'open')
+    card.classList.add('match')
+
+  }
 }
 
 function isMatch () {
-  card1 = openCards[0].children[0].classList.value
-  card2 = openCards[1].children[0].classList.value
-  if (card1 === card2) {
-    console.log('match!');
-    return true;
-  }
-  else {
-    return false;
-  }
+
 }
 
 startGame();
