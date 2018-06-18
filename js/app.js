@@ -26,6 +26,7 @@ let openCards = {
   }
 }
 let matchedCards = [];
+let clickFreeze = false;
 
 /*
  * Display the cards on the page
@@ -67,7 +68,9 @@ function startGame () {
   for (let card of cards) {
     card.classList = 'card';
     card.addEventListener('click', function (event) {
-      showCard(event.target);
+      if (clickFreeze === false) {
+        showCard(event.target);
+      }
     })
   }
 }
@@ -84,13 +87,16 @@ function showCard (card) {
   card.classList.add('show', 'open');
   addToOpenCards(card);
   if (openCards.cards.length === 2) {
+    clickFreeze = true;
     if (openCards.isMatch()) {
       setMatchedCards();
       openCards.clear();
+      clickFreeze = false;
     } else {
       setTimeout(function () {
         openCards.closeAll();
         openCards.clear();
+        clickFreeze = false;
       }, 1000)
     }
   }
