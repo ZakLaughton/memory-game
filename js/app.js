@@ -2,6 +2,10 @@
  * Create a list that holds all of your cards
  */
 
+let matchedCards = [];
+let clickFreeze = false;
+let moveCount = 0
+
 let openCards = {
   cards: [],
 
@@ -25,8 +29,6 @@ let openCards = {
     }
   }
 }
-let matchedCards = [];
-let clickFreeze = false;
 
 /*
  * Display the cards on the page
@@ -92,6 +94,9 @@ function showCard (card) {
       setMatchedCards();
       openCards.clear();
       clickFreeze = false;
+      if (matchedCards.length === 16) {
+        endGame();
+      }
     } else {
       setTimeout(function () {
         openCards.closeAll();
@@ -99,11 +104,18 @@ function showCard (card) {
         clickFreeze = false;
       }, 1000)
     }
+    incrementMoveCount();
   }
 }
 
 function addToOpenCards (card) {
   openCards.cards.push(card);
+}
+
+function incrementMoveCount () {
+  let moves = document.getElementsByClassName('moves')[0].innerHTML;
+  moves = Number(moves) + 1;
+  document.getElementsByClassName('moves')[0].innerHTML = moves;
 }
 
 function setMatchedCards () {
