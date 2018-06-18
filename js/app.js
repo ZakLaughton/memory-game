@@ -46,7 +46,7 @@ function shuffle(array) {
         array[randomIndex] = temporaryValue;
     }
 
-    return array ;
+    return array;
 }
 
 /*
@@ -91,10 +91,6 @@ function showCard (card) {
   }
 }
 
-function closeCards () {
-
-}
-
 function addToOpenCards (card) {
   openCards.cards.push(card);
 }
@@ -103,12 +99,8 @@ function setMatchedCards () {
   for (let card of openCards.cards) {
     card.classList.remove('show', 'open')
     card.classList.add('match')
-
+    matchedCards.push(card)
   }
-}
-
-function isMatch () {
-
 }
 
 startGame();
