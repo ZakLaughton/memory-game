@@ -1,10 +1,5 @@
 # Memory Game Project
 
-## Table of Contents
-
-* [Instructions](#instructions)
-* [Contributing](#contributing)
-
 ## Instructions
 
 The object of the game is to find all matching cards. You can only turn over two
