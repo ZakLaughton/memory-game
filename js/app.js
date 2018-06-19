@@ -5,6 +5,7 @@
 let matchedCards = [];
 let clickFreeze = false;
 let moveCount = 0
+let stars = document.querySelectorAll('.stars li')
 
 let openCards = {
   cards: [],
@@ -80,6 +81,9 @@ function startGame () {
   openCards.clear();
   document.getElementsByClassName('moves')[0].innerHTML = 0;
   matchedCards.length = 0
+  for (star of stars) {
+    star.querySelector('i').classList = "fa fa-star";
+  }
   shuffleCards();
   let cards = document.querySelectorAll('.deck .card');
   for (let card of cards) {
@@ -123,6 +127,11 @@ function incrementMoveCount () {
   let moves = document.getElementsByClassName('moves')[0].innerHTML;
   moves = Number(moves) + 1;
   document.getElementsByClassName('moves')[0].innerHTML = moves;
+  if (moves === 15) {
+    stars[2].querySelector('i').classList = "fa fa-star-o";
+  } else if (moves === 21) {
+    stars[1].querySelector('i').classList = "fa fa-star-o";
+  }
 }
 
 function setMatchedCards () {
