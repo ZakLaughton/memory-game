@@ -100,6 +100,7 @@ function playAgainButton () {
  * @description What to do when card is clicked
  */
 function showCard (card) {
+  animate(card, 'flipInX');
   card.classList.add('show', 'open');
   openCards.addCard(card);
   if (openCards.cards.length === 2) {
@@ -117,6 +118,9 @@ function showCard (card) {
     } else {
       // No match; flip cards back over after 1 second
       setTimeout(function () {
+        for (let card of openCards.cards) {
+          animate(card, 'flipInX');
+        }
         openCards.closeAll();
         openCards.clear();
         incrementMoveCount();
@@ -177,6 +181,18 @@ function setMatchedCards () {
     card.classList.add('match');
     matchedCards.push(card);
   }
+}
+
+/**
+ * @description Animates an element on the page
+ * @param elementToAnimate
+ * @param {string} animation - name of animation class from animate.class
+ */
+function animate (elementToAnimate, animation) {
+  elementToAnimate.classList.add('animated', animation)
+  setTimeout (function () {
+    elementToAnimate.classList.remove('animated', animation)
+  }, 500)
 }
 
 // Initialize game
