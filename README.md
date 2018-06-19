@@ -7,15 +7,14 @@
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+The object of the game is to find all matching cards. You can only turn over two
+cards at a single time. When you turn over two cards that match, they will stay
+flipped over. Match all the cards to win the game!
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Authors
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+* **Zak Laughton**
 
-## Contributing
+## Acknowledgments
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
-# memory-game
+* Styling used from Udacity's project template: https://github.com/udacity/fend-project-memory-game
