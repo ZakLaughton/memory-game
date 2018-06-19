@@ -26,6 +26,9 @@ let openCards = {
     else {
       return false;
     }
+  },
+  addCard: function (card) {
+    this.cards.push(card);
   }
 }
 
@@ -99,7 +102,7 @@ function playAgainButton () {
  */
 function showCard (card) {
   card.classList.add('show', 'open');
-  addToOpenCards(card);
+  openCards.addCard(card);
   if (openCards.cards.length === 2) {
     clickFreeze = true; // Temporarily suspend clicks
     if (openCards.isMatch()) {
@@ -150,13 +153,6 @@ function startTimer () {
  */
 function stopTimer () {
   clearInterval(timer);
-}
-
-/**
- * @description add card to openCards list
- */
-function addToOpenCards (card) {
-  openCards.cards.push(card);
 }
 
 /**
