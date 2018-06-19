@@ -134,6 +134,7 @@ function showCard (card) {
  * @description Display endgame win screen
  */
 function endGame () {
+  animate(document.getElementById('overlay'), 'fadeIn');
   document.querySelector('#overlay .rating').innerHTML = allStars.innerHTML;
   document.querySelector('#overlay .time').innerHTML = seconds.innerHTML;
   document.getElementById('overlay').style.display = 'block';
