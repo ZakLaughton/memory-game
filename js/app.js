@@ -1,14 +1,10 @@
-/*
- * Create a list that holds all of your cards
- */
-
 let matchedCards = [];
 let clickFreeze = false;
 let moveCount = 0;
 let allStars = document.querySelector('.stars');
 let stars = document.querySelectorAll('.stars li');
 let seconds = document.querySelector('.timer');
-let timer;
+let timer; // Used to start/stop timer with setInterval/clearInterval
 
 let openCards = {
   cards: [],
@@ -33,14 +29,9 @@ let openCards = {
   }
 }
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
+/**
+ * @description Shuffle function from http://stackoverflow.com/a/2450976
  */
-
-// Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -55,6 +46,9 @@ function shuffle(array) {
     return array;
 }
 
+/**
+ * @description randomizes card order on the page
+ */
 function shuffleCards() {
   let cards = document.querySelectorAll('ul.deck li.card');
   let cardsArray = Array.from(cards);
@@ -67,19 +61,10 @@ function shuffleCards() {
   document.querySelector('.deck').innerHTML = newBoard
 }
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+/**
+ * @description Clears and re-initializes game data
  */
-
 function startGame () {
-  // set board
   openCards.clear();
   document.getElementsByClassName('moves')[0].innerHTML = 0;
   matchedCards.length = 0;
@@ -101,26 +86,34 @@ function startGame () {
   }
 }
 
+/**
+ * @description Restart game when "Play again" button is pressed
+ */
 function playAgainButton () {
   document.getElementById('overlay').style.display = 'none';
   startGame();
 }
 
+/**
+ * @description What to do when card is clicked
+ */
 function showCard (card) {
   card.classList.add('show', 'open');
   addToOpenCards(card);
   if (openCards.cards.length === 2) {
-    clickFreeze = true;
+    clickFreeze = true; // Temporarily suspend clicks
     if (openCards.isMatch()) {
       setMatchedCards();
       openCards.clear();
       clickFreeze = false;
       incrementMoveCount();
+      // Show win screen if all matches are found
       if (matchedCards.length === 16) {
         stopTimer();
         endGame();
       }
     } else {
+      // No match; flip cards back over after 1 second
       setTimeout(function () {
         openCards.closeAll();
         openCards.clear();
@@ -131,12 +124,18 @@ function showCard (card) {
   }
 }
 
+/**
+ * @description Display endgame win screen
+ */
 function endGame () {
   document.querySelector('#overlay .rating').innerHTML = allStars.innerHTML;
   document.querySelector('#overlay .time').innerHTML = seconds.innerHTML;
   document.getElementById('overlay').style.display = 'block';
 }
 
+/**
+ * @description Start game timer when the game starts
+ */
 function startTimer () {
   timer = setInterval (
     function () {
@@ -146,14 +145,23 @@ function startTimer () {
   );
 }
 
+/**
+ * @description Stop the game timer
+ */
 function stopTimer () {
   clearInterval(timer);
 }
 
+/**
+ * @description add card to openCards list
+ */
 function addToOpenCards (card) {
   openCards.cards.push(card);
 }
 
+/**
+ * @description Increases move counter and changes star rating
+ */
 function incrementMoveCount () {
   let moves = document.getElementsByClassName('moves')[0].innerHTML;
   moves = Number(moves) + 1;
@@ -165,6 +173,9 @@ function incrementMoveCount () {
   }
 }
 
+/**
+ * @description Sets classes for matched cards
+ */
 function setMatchedCards () {
   for (let card of openCards.cards) {
     card.classList.remove('show', 'open')
@@ -173,6 +184,7 @@ function setMatchedCards () {
   }
 }
 
+// Initialize game
 startGame();
 const restartButton = document.querySelector('.restart')
 restartButton.addEventListener('click', startGame)
