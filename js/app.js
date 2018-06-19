@@ -1,6 +1,5 @@
 let matchedCards = [];
 let clickFreeze = false;
-let moveCount = 0;
 let allStars = document.querySelector('.stars');
 let stars = document.querySelectorAll('.stars li');
 let seconds = document.querySelector('.timer');
@@ -14,12 +13,12 @@ let openCards = {
   },
   closeAll: function () {
     for (let card of this.cards) {
-      card.classList.remove('show', 'open')
+      card.classList.remove('show', 'open');
     }
   },
   isMatch: function () {
-    card1 = this.cards[0].children[0].classList.value
-    card2 = this.cards[1].children[0].classList.value
+    let card1 = this.cards[0].children[0].classList.value;
+    let card2 = this.cards[1].children[0].classList.value;
     if (card1 === card2) {
       return true;
     }
@@ -30,7 +29,7 @@ let openCards = {
   addCard: function (card) {
     this.cards.push(card);
   }
-}
+};
 
 /**
  * @description Shuffle function from http://stackoverflow.com/a/2450976
@@ -57,11 +56,11 @@ function shuffleCards() {
   let cardsArray = Array.from(cards);
 
   cardsArray = shuffle(cardsArray);
-  newBoard = ""
-  for (card of cardsArray) {
-    newBoard += card.outerHTML
+  let newBoard = "";
+  for (let card of cardsArray) {
+    newBoard += card.outerHTML;
   }
-  document.querySelector('.deck').innerHTML = newBoard
+  document.querySelector('.deck').innerHTML = newBoard;
 }
 
 /**
@@ -74,7 +73,7 @@ function startGame () {
   seconds.innerHTML = 0;
   clearInterval(timer);
   startTimer();
-  for (star of stars) {
+  for (let star of stars) {
     star.querySelector('i').classList = "fa fa-star";
   }
   shuffleCards();
@@ -85,7 +84,7 @@ function startGame () {
       if (clickFreeze === false) {
         showCard(event.target);
       }
-    })
+    });
   }
 }
 
@@ -122,7 +121,7 @@ function showCard (card) {
         openCards.clear();
         incrementMoveCount();
         clickFreeze = false;
-      }, 1000)
+      }, 1000);
     }
   }
 }
@@ -142,7 +141,7 @@ function endGame () {
 function startTimer () {
   timer = setInterval (
     function () {
-      nextSecond = Number(seconds.innerHTML) + 1;
+      let nextSecond = Number(seconds.innerHTML) + 1;
       seconds.innerHTML = nextSecond;
     }, 1000
   );
@@ -174,13 +173,13 @@ function incrementMoveCount () {
  */
 function setMatchedCards () {
   for (let card of openCards.cards) {
-    card.classList.remove('show', 'open')
-    card.classList.add('match')
-    matchedCards.push(card)
+    card.classList.remove('show', 'open');
+    card.classList.add('match');
+    matchedCards.push(card);
   }
 }
 
 // Initialize game
 startGame();
-const restartButton = document.querySelector('.restart')
-restartButton.addEventListener('click', startGame)
+const restartButton = document.querySelector('.restart');
+restartButton.addEventListener('click', startGame);
