@@ -4,9 +4,11 @@
 
 let matchedCards = [];
 let clickFreeze = false;
-let moveCount = 0
-let allStars = document.querySelector('.stars')
-let stars = document.querySelectorAll('.stars li')
+let moveCount = 0;
+let allStars = document.querySelector('.stars');
+let stars = document.querySelectorAll('.stars li');
+let seconds = document.querySelector('.timer');
+let timer;
 
 let openCards = {
   cards: [],
@@ -80,7 +82,10 @@ function startGame () {
   // set board
   openCards.clear();
   document.getElementsByClassName('moves')[0].innerHTML = 0;
-  matchedCards.length = 0
+  matchedCards.length = 0;
+  seconds.innerHTML = 0;
+  clearInterval(timer);
+  startTimer();
   for (star of stars) {
     star.querySelector('i').classList = "fa fa-star";
   }
@@ -110,23 +115,39 @@ function showCard (card) {
       setMatchedCards();
       openCards.clear();
       clickFreeze = false;
+      incrementMoveCount();
       if (matchedCards.length === 16) {
+        stopTimer();
         endGame();
       }
     } else {
       setTimeout(function () {
         openCards.closeAll();
         openCards.clear();
+        incrementMoveCount();
         clickFreeze = false;
       }, 1000)
     }
-    incrementMoveCount();
   }
 }
 
 function endGame () {
   document.querySelector('#overlay .rating').innerHTML = allStars.innerHTML;
+  document.querySelector('#overlay .time').innerHTML = seconds.innerHTML;
   document.getElementById('overlay').style.display = 'block';
+}
+
+function startTimer () {
+  timer = setInterval (
+    function () {
+      nextSecond = Number(seconds.innerHTML) + 1;
+      seconds.innerHTML = nextSecond;
+    }, 1000
+  );
+}
+
+function stopTimer () {
+  clearInterval(timer);
 }
 
 function addToOpenCards (card) {
@@ -139,7 +160,7 @@ function incrementMoveCount () {
   document.getElementsByClassName('moves')[0].innerHTML = moves;
   if (moves === 15) {
     stars[2].querySelector('i').classList = "fa fa-star-o";
-  } else if (moves === 21) {
+  } else if (moves === 19) {
     stars[1].querySelector('i').classList = "fa fa-star-o";
   }
 }
