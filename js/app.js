@@ -5,6 +5,7 @@
 let matchedCards = [];
 let clickFreeze = false;
 let moveCount = 0
+let allStars = document.querySelector('.stars')
 let stars = document.querySelectorAll('.stars li')
 
 let openCards = {
@@ -22,7 +23,6 @@ let openCards = {
     card1 = this.cards[0].children[0].classList.value
     card2 = this.cards[1].children[0].classList.value
     if (card1 === card2) {
-      console.log('match!');
       return true;
     }
     else {
@@ -96,6 +96,11 @@ function startGame () {
   }
 }
 
+function playAgainButton () {
+  document.getElementById('overlay').style.display = 'none';
+  startGame();
+}
+
 function showCard (card) {
   card.classList.add('show', 'open');
   addToOpenCards(card);
@@ -117,6 +122,11 @@ function showCard (card) {
     }
     incrementMoveCount();
   }
+}
+
+function endGame () {
+  document.querySelector('#overlay .rating').innerHTML = allStars.innerHTML;
+  document.getElementById('overlay').style.display = 'block';
 }
 
 function addToOpenCards (card) {
