@@ -1,0 +1,12 @@
+@media screen and (max-width: 680px) {
+  .deck {
+    width: 330px;
+    min-height: 340px;
+    padding: 16px;
+  }
+
+  .deck .card {
+      height: 62px;
+      width: 62px;
+  }
+}
