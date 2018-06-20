@@ -102,14 +102,20 @@ function showCard (card) {
   openCards.addCard(card);
   if (openCards.cards.length === 2) {
     if (openCards.isMatch()) {
-      setMatchedCards();
-      openCards.clear();
-      incrementMoveCount();
-      // Show win screen if all matches are found
-      if (matchedCards.length === 16) {
-        stopTimer();
-        endGame();
-      }
+      // Animate matched cards after flip animation
+      setTimeout(function () {
+        for (let card of openCards.cards) {
+          animate(card, 'bounceIn')
+        }
+        setMatchedCards();
+        openCards.clear();
+        incrementMoveCount();
+        // Show win screen if all matches are found
+        if (matchedCards.length === 16) {
+          stopTimer();
+          endGame();
+        }
+      }, 500)
     } else {
       // No match; flip cards back over after 1 second
       setTimeout(function () {
