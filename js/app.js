@@ -113,7 +113,7 @@ function showCard (card) {
         // Show win screen if all matches are found
         if (matchedCards.length === 16) {
           stopTimer();
-          endGame();
+          setTimeout(endGame, 500);
         }
       }, 500)
     } else {
