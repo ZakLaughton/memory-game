@@ -97,21 +97,31 @@ function playAgainButton () {
  * @description What to do when card is clicked
  */
 function showCard (card) {
+  animate(card, 'flipInX');
   card.classList.add('show', 'open');
   openCards.addCard(card);
   if (openCards.cards.length === 2) {
     if (openCards.isMatch()) {
-      setMatchedCards();
-      openCards.clear();
-      incrementMoveCount();
-      // Show win screen if all matches are found
-      if (matchedCards.length === 16) {
-        stopTimer();
-        endGame();
-      }
+      // Animate matched cards after flip animation
+      setTimeout(function () {
+        for (let card of openCards.cards) {
+          animate(card, 'bounceIn')
+        }
+        setMatchedCards();
+        openCards.clear();
+        incrementMoveCount();
+        // Show win screen if all matches are found
+        if (matchedCards.length === 16) {
+          stopTimer();
+          endGame();
+        }
+      }, 500)
     } else {
       // No match; flip cards back over after 1 second
       setTimeout(function () {
+        for (let card of openCards.cards) {
+          animate(card, 'flipInX');
+        }
         openCards.closeAll();
         openCards.clear();
         incrementMoveCount();
@@ -124,6 +134,7 @@ function showCard (card) {
  * @description Display endgame win screen
  */
 function endGame () {
+  animate(document.getElementById('overlay'), 'fadeIn');
   document.querySelector('#overlay .rating').innerHTML = allStars.innerHTML;
   document.querySelector('#overlay .time').innerHTML = seconds.innerHTML;
   document.getElementById('overlay').style.display = 'block';
@@ -171,6 +182,18 @@ function setMatchedCards () {
     card.classList.add('match');
     matchedCards.push(card);
   }
+}
+
+/**
+ * @description Animates an element on the page
+ * @param elementToAnimate
+ * @param {string} animation - name of animation class from animate.class
+ */
+function animate (elementToAnimate, animation) {
+  elementToAnimate.classList.add('animated', animation)
+  setTimeout (function () {
+    elementToAnimate.classList.remove('animated', animation)
+  }, 500)
 }
 
 // Initialize game
