@@ -1,5 +1,4 @@
 let matchedCards = [];
-let clickFreeze = false;
 let allStars = document.querySelector('.stars');
 let stars = document.querySelectorAll('.stars li');
 let seconds = document.querySelector('.timer');
@@ -81,9 +80,7 @@ function startGame () {
   for (let card of cards) {
     card.classList = 'card';
     card.addEventListener('click', function (event) {
-      if (clickFreeze === false) {
-        showCard(event.target);
-      }
+      showCard(event.target);
     });
   }
 }
@@ -103,11 +100,9 @@ function showCard (card) {
   card.classList.add('show', 'open');
   openCards.addCard(card);
   if (openCards.cards.length === 2) {
-    clickFreeze = true; // Temporarily suspend clicks
     if (openCards.isMatch()) {
       setMatchedCards();
       openCards.clear();
-      clickFreeze = false;
       incrementMoveCount();
       // Show win screen if all matches are found
       if (matchedCards.length === 16) {
@@ -120,7 +115,6 @@ function showCard (card) {
         openCards.closeAll();
         openCards.clear();
         incrementMoveCount();
-        clickFreeze = false;
       }, 1000);
     }
   }
