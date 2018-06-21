@@ -134,10 +134,13 @@ function showCard (card) {
  * @description Display endgame win screen
  */
 function endGame () {
-  animate(document.getElementById('overlay'), 'fadeIn');
-  document.querySelector('#overlay .rating').innerHTML = allStars.innerHTML;
-  document.querySelector('#overlay .time').innerHTML = seconds.innerHTML;
-  document.getElementById('overlay').style.display = 'block';
+  endGameFlip();
+  setTimeout (function () {
+    animate(document.getElementById('overlay'), 'fadeIn');
+    document.querySelector('#overlay .rating').innerHTML = allStars.innerHTML;
+    document.querySelector('#overlay .time').innerHTML = seconds.innerHTML;
+    document.getElementById('overlay').style.display = 'block';
+  }, 1000);
 }
 
 /**
@@ -194,6 +197,40 @@ function animate (elementToAnimate, animation) {
   setTimeout (function () {
     elementToAnimate.classList.remove('animated', animation)
   }, 500)
+}
+
+function endGameFlip () {
+  let cards = document.querySelector('.deck').childNodes
+  setTimeout(function () {
+    animate(cards[0], 'bounceIn');
+  }, 100);
+  setTimeout(function () {
+    animate(cards[1], 'bounceIn');
+    animate(cards[4], 'bounceIn');
+  }, 200);
+  setTimeout(function () {
+    animate(cards[2], 'bounceIn');
+    animate(cards[5], 'bounceIn');
+    animate(cards[8], 'bounceIn');
+  }, 300);
+  setTimeout(function () {
+    animate(cards[3], 'bounceIn');
+    animate(cards[6], 'bounceIn');
+    animate(cards[9], 'bounceIn');
+    animate(cards[12], 'bounceIn');
+  }, 400);
+  setTimeout(function () {
+    animate(cards[7], 'bounceIn');
+    animate(cards[10], 'bounceIn');
+    animate(cards[13], 'bounceIn');
+  }, 500);
+  setTimeout(function () {
+    animate(cards[11], 'bounceIn');
+    animate(cards[14], 'bounceIn');
+  }, 600);
+  setTimeout(function () {
+    animate(cards[15], 'bounceIn');
+  }, 700);
 }
 
 // Initialize game
