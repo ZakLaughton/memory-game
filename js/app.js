@@ -6,7 +6,7 @@ let timer; // Used to start/stop timer with setInterval/clearInterval
 let symbols = ['ambulance', 'anchor', 'automobile', 'archive', 'balance-scale',
                'bank', 'bath', 'beer', 'bell-o', 'bicycle', 'binoculars',
                'bolt', 'bomb', 'briefcase', 'camera', 'coffee', 'comment-o',
-               'cube', 'cut', 'diamond', 'dribble', 'empire', 'envelope',
+               'cube', 'cut', 'diamond', 'empire', 'envelope',
                'eyedropper', 'gift', 'glass', 'globe', 'home', 'leaf', 'lock',
                'music', 'paper-plane-o', 'plane', 'rebel', 'shopping-cart',
                'shower', 'tree', 'truck', 'tv', 'wrench'];
