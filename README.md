@@ -16,6 +16,8 @@ flipped over. Match all the cards to win the game!
 ## Dependencies
 * ES6
 * Bootstrap
+* Font Awesome
+* Google Fonts
 
 ## Acknowledgments
 
