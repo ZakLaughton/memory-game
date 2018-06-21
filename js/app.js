@@ -214,35 +214,36 @@ function animate (elementToAnimate, animation) {
  */
 function endGameFlip () {
   let cards = document.querySelector('.deck').childNodes;
+  animateAction = 'bounceIn'
   setTimeout(function () {
-    animate(cards[0], 'bounceIn');
+    animate(cards[0], animateAction);
   }, 100);
   setTimeout(function () {
-    animate(cards[1], 'bounceIn');
-    animate(cards[4], 'bounceIn');
+    animate(cards[1], animateAction);
+    animate(cards[4], animateAction);
   }, 200);
   setTimeout(function () {
-    animate(cards[2], 'bounceIn');
-    animate(cards[5], 'bounceIn');
-    animate(cards[8], 'bounceIn');
+    animate(cards[2], animateAction);
+    animate(cards[5], animateAction);
+    animate(cards[8], animateAction);
   }, 300);
   setTimeout(function () {
-    animate(cards[3], 'bounceIn');
-    animate(cards[6], 'bounceIn');
-    animate(cards[9], 'bounceIn');
-    animate(cards[12], 'bounceIn');
+    animate(cards[3], animateAction);
+    animate(cards[6], animateAction);
+    animate(cards[9], animateAction);
+    animate(cards[12], animateAction);
   }, 400);
   setTimeout(function () {
-    animate(cards[7], 'bounceIn');
-    animate(cards[10], 'bounceIn');
-    animate(cards[13], 'bounceIn');
+    animate(cards[7], animateAction);
+    animate(cards[10], animateAction);
+    animate(cards[13], animateAction);
   }, 500);
   setTimeout(function () {
-    animate(cards[11], 'bounceIn');
-    animate(cards[14], 'bounceIn');
+    animate(cards[11], animateAction);
+    animate(cards[14], animateAction);
   }, 600);
   setTimeout(function () {
-    animate(cards[15], 'bounceIn');
+    animate(cards[15], animateAction);
   }, 700);
 }
 
