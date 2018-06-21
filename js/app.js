@@ -59,12 +59,13 @@ function shuffle(array) {
  */
 function shuffleCards() {
   let deck = document.querySelector('.deck');
+  // select 8 random symbols
   symbols = shuffle(symbols);
-
   let chosenSymbols = symbols.slice(0,8);
+  // duplicate and randomize the symbol order
   chosenSymbols.push(...chosenSymbols);
-  console.log(`Chosen symbols: ${chosenSymbols}`);
   chosenSymbols = shuffle(chosenSymbols);
+  // add shuffled deck to page
   let newDeck = "";
   for(let symbol of chosenSymbols){
     newDeck += `<li class="card"><i class='fa fa-${symbol}'></i></li>`;
