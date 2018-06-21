@@ -3,6 +3,7 @@ let allStars = document.querySelector('.stars');
 let stars = document.querySelectorAll('.stars li');
 let seconds = document.querySelector('.timer');
 let timer; // Used to start/stop timer with setInterval/clearInterval
+let symbols = ['ambulance', 'anchor', 'balance-scale', 'bank', 'bath', 'beer', 'bell-o', 'bicycle', 'binoculars', 'bolt', 'bomb', 'cube', 'diamond', 'leaf', 'paper-plane-o']
 
 let openCards = {
   cards: [],
@@ -51,15 +52,18 @@ function shuffle(array) {
  * @description randomizes card order on the page
  */
 function shuffleCards() {
-  let cards = document.querySelectorAll('ul.deck li.card');
-  let cardsArray = Array.from(cards);
+  let deck = document.querySelector('.deck')
+  symbols = shuffle(symbols);
 
-  cardsArray = shuffle(cardsArray);
-  let newBoard = "";
-  for (let card of cardsArray) {
-    newBoard += card.outerHTML;
+  let chosenSymbols = symbols.slice(0,8);
+  chosenSymbols.push(...chosenSymbols)
+  console.log(`Chosen symbols: ${chosenSymbols}`)
+  chosenSymbols = shuffle(chosenSymbols)
+  let newDeck = "";
+  for(let symbol of chosenSymbols){
+    newDeck += `<li class="card"><i class='fa fa-${symbol}'></i></li>`
   }
-  document.querySelector('.deck').innerHTML = newBoard;
+  deck.innerHTML = newDeck;
 }
 
 /**
