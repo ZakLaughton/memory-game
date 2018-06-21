@@ -55,7 +55,7 @@ function shuffle(array) {
 }
 
 /**
- * @description randomizes card order on the page
+ * @description Selects symbols to use and randomizes card order on the page
  */
 function shuffleCards() {
   let deck = document.querySelector('.deck');
@@ -208,6 +208,9 @@ function animate (elementToAnimate, animation) {
   }, 500);
 }
 
+/**
+ * @description Runs animation to flip all cards when the game is won
+ */
 function endGameFlip () {
   let cards = document.querySelector('.deck').childNodes;
   setTimeout(function () {
