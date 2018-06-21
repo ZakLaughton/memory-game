@@ -136,7 +136,6 @@ function showCard (card) {
 function endGame () {
   endGameFlip();
   setTimeout (function () {
-    animate(document.getElementById('overlay'), 'fadeIn');
     document.querySelector('#overlay .rating').innerHTML = allStars.innerHTML;
     document.querySelector('#overlay .time').innerHTML = seconds.innerHTML;
     document.getElementById('overlay').style.display = 'block';
