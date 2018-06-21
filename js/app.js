@@ -9,7 +9,7 @@ let symbols = ['ambulance', 'anchor', 'automobile', 'archive', 'balance-scale',
                'cube', 'cut', 'diamond', 'dribble', 'empire', 'envelope',
                'eyedropper', 'gift', 'glass', 'globe', 'home', 'leaf', 'lock',
                'music', 'paper-plane-o', 'plane', 'rebel', 'shopping-cart',
-               'shower', 'tree', 'truck', 'tv', 'wrench']
+               'shower', 'tree', 'truck', 'tv', 'wrench'];
 
 let openCards = {
   cards: [],
@@ -58,16 +58,16 @@ function shuffle(array) {
  * @description randomizes card order on the page
  */
 function shuffleCards() {
-  let deck = document.querySelector('.deck')
+  let deck = document.querySelector('.deck');
   symbols = shuffle(symbols);
 
   let chosenSymbols = symbols.slice(0,8);
-  chosenSymbols.push(...chosenSymbols)
-  console.log(`Chosen symbols: ${chosenSymbols}`)
-  chosenSymbols = shuffle(chosenSymbols)
+  chosenSymbols.push(...chosenSymbols);
+  console.log(`Chosen symbols: ${chosenSymbols}`);
+  chosenSymbols = shuffle(chosenSymbols);
   let newDeck = "";
   for(let symbol of chosenSymbols){
-    newDeck += `<li class="card"><i class='fa fa-${symbol}'></i></li>`
+    newDeck += `<li class="card"><i class='fa fa-${symbol}'></i></li>`;
   }
   deck.innerHTML = newDeck;
 }
@@ -115,7 +115,7 @@ function showCard (card) {
       // Animate matched cards after flip animation
       setTimeout(function () {
         for (let card of openCards.cards) {
-          animate(card, 'bounceIn')
+          animate(card, 'bounceIn');
         }
         setMatchedCards();
         openCards.clear();
@@ -125,7 +125,7 @@ function showCard (card) {
           stopTimer();
           setTimeout(endGame, 500);
         }
-      }, 500)
+      }, 500);
     } else {
       // No match; flip cards back over after 1 second
       setTimeout(function () {
@@ -202,14 +202,14 @@ function setMatchedCards () {
  * @param {string} animation - name of animation class from animate.class
  */
 function animate (elementToAnimate, animation) {
-  elementToAnimate.classList.add('animated', animation)
+  elementToAnimate.classList.add('animated', animation);
   setTimeout (function () {
-    elementToAnimate.classList.remove('animated', animation)
-  }, 500)
+    elementToAnimate.classList.remove('animated', animation);
+  }, 500);
 }
 
 function endGameFlip () {
-  let cards = document.querySelector('.deck').childNodes
+  let cards = document.querySelector('.deck').childNodes;
   setTimeout(function () {
     animate(cards[0], 'bounceIn');
   }, 100);
