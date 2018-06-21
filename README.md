@@ -18,6 +18,7 @@ flipped over. Match all the cards to win the game!
 * Bootstrap
 * Font Awesome
 * Google Fonts
+* [animate.css](http://daneden.me/animate)
 
 ## Acknowledgments
 
