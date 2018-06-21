@@ -116,7 +116,7 @@ function showCard (card) {
       // Animate matched cards after flip animation
       setTimeout(function () {
         for (let card of openCards.cards) {
-          animate(card, 'bounceIn');
+          animate(card, 'rubberBand');
         }
         setMatchedCards();
         openCards.clear();
@@ -150,7 +150,7 @@ function endGame () {
     document.querySelector('#overlay .rating').innerHTML = allStars.innerHTML;
     document.querySelector('#overlay .time').innerHTML = seconds.innerHTML;
     document.getElementById('overlay').style.display = 'block';
-  }, 1000);
+  }, 1300);
 }
 
 /**
@@ -214,36 +214,36 @@ function animate (elementToAnimate, animation) {
  */
 function endGameFlip () {
   let cards = document.querySelector('.deck').childNodes;
-  animateAction = 'bounceIn'
+  let animateAction = 'flip';
   setTimeout(function () {
-    animate(cards[0], animateAction);
+    cards[0].classList.add('animated', animateAction);
   }, 100);
   setTimeout(function () {
-    animate(cards[1], animateAction);
-    animate(cards[4], animateAction);
+    cards[1].classList.add('animated', animateAction);
+    cards[4].classList.add('animated', animateAction);
   }, 200);
   setTimeout(function () {
-    animate(cards[2], animateAction);
-    animate(cards[5], animateAction);
-    animate(cards[8], animateAction);
+    cards[2].classList.add('animated', animateAction);
+    cards[5].classList.add('animated', animateAction);
+    cards[8].classList.add('animated', animateAction);
   }, 300);
   setTimeout(function () {
-    animate(cards[3], animateAction);
-    animate(cards[6], animateAction);
-    animate(cards[9], animateAction);
-    animate(cards[12], animateAction);
+    cards[3].classList.add('animated', animateAction);
+    cards[6].classList.add('animated', animateAction);
+    cards[9].classList.add('animated', animateAction);
+    cards[12].classList.add('animated', animateAction);
   }, 400);
   setTimeout(function () {
-    animate(cards[7], animateAction);
-    animate(cards[10], animateAction);
-    animate(cards[13], animateAction);
+    cards[7].classList.add('animated', animateAction);
+    cards[10].classList.add('animated', animateAction);
+    cards[13].classList.add('animated', animateAction);
   }, 500);
   setTimeout(function () {
-    animate(cards[11], animateAction);
-    animate(cards[14], animateAction);
+    cards[11].classList.add('animated', animateAction);
+    cards[14].classList.add('animated', animateAction);
   }, 600);
   setTimeout(function () {
-    animate(cards[15], animateAction);
+    cards[15].classList.add('animated', animateAction);
   }, 700);
 }
 
